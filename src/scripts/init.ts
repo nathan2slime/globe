@@ -3,7 +3,7 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export class Viewer {
-  renderer: THREE.WebGL1Renderer;
+  renderer: THREE.WebGLRenderer;
   container: HTMLElement | Element;
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
@@ -13,7 +13,7 @@ export class Viewer {
 
   constructor(container: HTMLElement | Element) {
     this.container = container;
-    this.renderer = new THREE.WebGL1Renderer({ antialias: false });
+    this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.composer = new EffectComposer(this.renderer);
 
     this.renderer.toneMapping = THREE.ReinhardToneMapping;
@@ -43,7 +43,6 @@ export class Viewer {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enablePan = true;
     this.controls.enableDamping = true;
-    // this.controls.enabled = false;
     this.controls.target.set(0, 0, 0);
   }
   update() {

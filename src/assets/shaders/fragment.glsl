@@ -1,3 +1,5 @@
+out vec4 fg;
+
 void main(void){
-    gl_FragColor = vec4(1.);
+    fg = vec4(1.);
 }

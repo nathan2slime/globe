@@ -3,7 +3,7 @@ import * as THREE from "three";
 function load_texture_as_promise(texture: string) {
   return new Promise((resolve, _reject) => {
     const texture_loader = new THREE.TextureLoader();
-    const textureLoaded = texture_loader.load(`assets/textures/${texture}.png`);
+    const textureLoaded = texture_loader.load(`src/assets/textures/${texture}.png`);
     resolve(textureLoaded);
   }) as Promise<THREE.Texture>;
 }

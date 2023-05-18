@@ -31,13 +31,14 @@ function compose_material(vert: any, frag: any, uniforms: any) {
     opacity: 1,
     side: THREE.DoubleSide,
     uniforms: uniforms,
+    glslVersion: THREE.GLSL3,
   });
 
   const vertex_shader_promises = loadFile(
-    `assets/shaders/${vert}.glsl`,
+    `src/assets/shaders/${vert}.glsl`,
   ) as Promise<string>;
   const fragment_shader_promises = loadFile(
-    `assets/shaders/${frag}.glsl`,
+    `src/assets/shaders/${frag}.glsl`,
   ) as Promise<string>;
 
   return Promise.all([vertex_shader_promises, fragment_shader_promises]).then(
@@ -46,6 +47,7 @@ function compose_material(vert: any, frag: any, uniforms: any) {
       default_material.fragmentShader = f;
       return default_material;
     },
+    
   );
 }
 function compose_uniforms_material(

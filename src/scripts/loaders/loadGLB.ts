@@ -5,7 +5,7 @@ export function CustomLoadModel(name: string) {
   return new Promise((resolve, reject) => {
     const loader = new GLTFLoader();
     loader.load(
-      `assets/${name}.glb`,
+      `src/assets/${name}.glb`,
       function (glb) {
         let model = glb.scene as THREE.Group;
         model.traverse((n) => {
