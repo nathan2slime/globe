@@ -1,6 +1,6 @@
 export enum vertex {
-  VERTEX = "vertex",
+  VERTEX = "vert",
 }
 export enum frag {
-  FRAGMENT = "fragment",
+  FRAGMENT = "frag",
 }

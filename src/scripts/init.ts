@@ -15,7 +15,6 @@ export class Viewer {
     this.container = container;
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.composer = new EffectComposer(this.renderer);
-
     this.renderer.toneMapping = THREE.ReinhardToneMapping;
 
     this.renderer.setSize(
@@ -38,12 +37,12 @@ export class Viewer {
     this.scene.fog = new THREE.Fog(0xffffff, 0.25, 3);
 
     this.camera = new THREE.PerspectiveCamera(45, this.aspectRatio, 0.01, 100);
-    //
     this.camera.position.set(0, 0, 10);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enablePan = true;
     this.controls.enableDamping = true;
     this.controls.target.set(0, 0, 0);
+    
   }
   update() {
     this.renderer.render(this.scene, this.camera);
