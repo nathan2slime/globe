@@ -15,7 +15,8 @@ export class Viewer {
     this.container = container;
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.composer = new EffectComposer(this.renderer);
-    this.renderer.toneMapping = THREE.ReinhardToneMapping;
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 1.1;
 
     this.renderer.setSize(
       innerWidth,
@@ -25,7 +26,7 @@ export class Viewer {
       innerWidth,
       innerHeight,
     );
-    this.renderer.autoClear = false;
+    // this.renderer.autoClear = false;
 
     this.container.appendChild(this.renderer.domElement);
     this.aspectRatio = innerWidth / innerHeight;
@@ -42,11 +43,13 @@ export class Viewer {
     this.controls.enablePan = true;
     this.controls.enableDamping = true;
     this.controls.target.set(0, 0, 0);
+    this.controls.autoRotate = true;
+    this.controls.autoRotateSpeed = .5;
     
   }
   update() {
-    this.renderer.render(this.scene, this.camera);
-    // this.composer.render();
+    // this.renderer.render(this.scene, this.camera);
+    this.composer.render();
     this.controls.update();
   }
 }

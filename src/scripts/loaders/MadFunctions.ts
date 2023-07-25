@@ -6,19 +6,27 @@ function LoadFile(filename: string): Promise<string> {
   return new THREE.FileLoader().loadAsync(filename) as Promise<string>;
 }
 function CreateUniforms() {
-  const default_uniforms: BaseCustomUniforms = {
+  const default_uniform: BaseCustomUniforms = {
     time: { value: 0 },
     base: { value: new THREE.Texture() },
+    _texture: { value: new THREE.Texture() },
+    fresn: { value: 0 },
+    strokeColor: { value: new THREE.Vector3() },
+    atmosphereColor: { value: new THREE.Vector3() },
+    alpha: { value: 0 },
+    ballDensity: { value: 0 },
+    radius: { value: 0 },
+    atmAtmosphereColor: { value: new THREE.Vector3() },
+    atmFresn: {value: 0},
+    atmAlpha: {value: 0},
   };
-  return default_uniforms;
+  return default_uniform;
 }
 function NewMaterial(vertFilename: any, fragFilename: any, uniforms: any) {
 
   const default_material = new THREE.ShaderMaterial({
-    precision: "mediump",
-    opacity: 1,
     uniforms: uniforms,
-    // glslVersion: THREE.GLSL3,
+    glslVersion: THREE.GLSL3,
   });
 
   const vertex_shader_promise = LoadFile(`/assets/shaders/${vertFilename}.glsl`);

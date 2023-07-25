@@ -1,16 +1,14 @@
 import * as THREE from "three";
 import { Viewer } from "./init";
 import Stats from "three/examples/jsm/libs/stats.module";
-import { BaseCustomUniforms } from "./types/interfaces";
+import * as globe from './project/globe';
 
 const clock = new THREE.Clock();
-let uniforms: BaseCustomUniforms;
 let viewer: Viewer;
 let stats: any;
 
-export function update(_viewer: Viewer, _uniforms: BaseCustomUniforms) {
+export function update(_viewer: Viewer) {
   viewer = _viewer;
-  uniforms = _uniforms;
 
   clock.start();
   stats = Stats();
@@ -26,7 +24,8 @@ function loop() {
   requestAnimationFrame(loop);
 
   const dt = clock.getDelta(); 
-  uniforms.time.value += dt;
+  
+  globe.UpdateGlobe(dt);
 
   viewer.update();
   stats.update();
